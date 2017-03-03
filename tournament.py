@@ -83,6 +83,7 @@ def play_match(player1, player2):
             num_wins[player1] += 1
 
             if termination == "timeout":
+                print('timeout: ', player2)
                 num_timeouts[player2] += 1
             else:
                 num_invalid_moves[player2] += 1
@@ -92,6 +93,7 @@ def play_match(player1, player2):
             num_wins[player2] += 1
 
             if termination == "timeout":
+                print('timeout: ', player1)
                 num_timeouts[player1] += 1
             else:
                 num_invalid_moves[player1] += 1

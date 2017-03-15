@@ -1,0 +1,588 @@
+*************************
+ Evaluating: ID_Improved
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random    	Result: 18 to 2
+  Match 2: ID_Improved vs   MM_Null   	Result: 13 to 7
+  Match 3: ID_Improved vs   MM_Open   	Result: 8 to 12
+  Match 4: ID_Improved vs MM_Improved 	Result: 10 to 10
+  Match 5: ID_Improved vs   AB_Null   	Result: 15 to 5
+  Match 6: ID_Improved vs   AB_Open   	Result: 13 to 7
+  Match 7: ID_Improved vs AB_Improved 	Result: 12 to 8
+
+
+Results:
+----------
+ID_Improved         63.57%
+
+*************************
+   Evaluating: Student
+*************************
+
+Playing Matches:
+----------
+  Match 1:   Student   vs   Random    	Result: 17 to 3
+  Match 2:   Student   vs   MM_Null   	Result: 15 to 5
+  Match 3:   Student   vs   MM_Open   	Result: 9 to 11
+  Match 4:   Student   vs MM_Improved 	Result: 10 to 10
+  Match 5:   Student   vs   AB_Null   	Result: 10 to 10
+  Match 6:   Student   vs   AB_Open   	Result: 10 to 10
+  Match 7:   Student   vs AB_Improved 	Result: 11 to 9
+
+
+Results:
+----------
+Student             58.57%
+
+
+
+换了ArthurLu的AB：
+
+*************************
+ Evaluating: ID_Improved
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random    	Result: 15 to 5
+  Match 2: ID_Improved vs   MM_Null   	Result: 17 to 3
+  Match 3: ID_Improved vs   MM_Open   	Result: 14 to 6
+  Match 4: ID_Improved vs MM_Improved 	Result: 15 to 5
+  Match 5: ID_Improved vs   AB_Null   	Result: 16 to 4
+  Match 6: ID_Improved vs   AB_Open   	Result: 13 to 7
+  Match 7: ID_Improved vs AB_Improved 	Result: 10 to 10
+
+
+Results:
+----------
+ID_Improved         71.43%
+
+*************************
+   Evaluating: Student
+*************************
+
+Playing Matches:
+----------
+  Match 1:   Student   vs   Random    	Result: 18 to 2
+  Match 2:   Student   vs   MM_Null   	Result: 15 to 5
+  Match 3:   Student   vs   MM_Open   	Result: 14 to 6
+  Match 4:   Student   vs MM_Improved 	Result: 10 to 10
+  Match 5:   Student   vs   AB_Null   	Result: 18 to 2
+  Match 6:   Student   vs   AB_Open   	Result: 11 to 9
+  Match 7:   Student   vs AB_Improved 	Result: 10 to 10
+
+
+Results:
+----------
+Student             68.57%
+
+
+
+
+
+换了ArthurLu的AB和MM
+
+*************************
+ Evaluating: ID_Improved
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random    	Result: 20 to 0
+  Match 2: ID_Improved vs   MM_Null   	Result: 14 to 6
+  Match 3: ID_Improved vs   MM_Open   	Result: 14 to 6
+  Match 4: ID_Improved vs MM_Improved 	Result: 9 to 11
+  Match 5: ID_Improved vs   AB_Null   	Result: 13 to 7
+  Match 6: ID_Improved vs   AB_Open   	Result: 14 to 6
+  Match 7: ID_Improved vs AB_Improved 	Result: 11 to 9
+
+
+Results:
+----------
+ID_Improved         67.86%
+
+*************************
+   Evaluating: Student
+*************************
+
+Playing Matches:
+----------
+  Match 1:   Student   vs   Random    	Result: 17 to 3
+  Match 2:   Student   vs   MM_Null   	Result: 17 to 3
+  Match 3:   Student   vs   MM_Open   	Result: 15 to 5
+  Match 4:   Student   vs MM_Improved 	Result: 13 to 7
+  Match 5:   Student   vs   AB_Null   	Result: 16 to 4
+  Match 6:   Student   vs   AB_Open   	Result: 13 to 7
+  Match 7:   Student   vs AB_Improved 	Result: 12 to 8
+
+
+Results:
+----------
+Student             73.57%
+
+
+
+
+
+
+
+illegal move : (-1, -1)
+legal moves:  [(0, 6), (2, 6)]
+illegal move
+ |   | - | - |   | - |   |   |
+ | - |   | - | - | 1 |   |   |
+ |   |   | - | - | - |   |   |
+ |   | - | - | - |   | - |   |
+ |   | - | - | - |   | - |   |
+ | - |   | - |   | - |   |   |
+ |   |   | - |   | 2 |   | - |
+
+[[(0, 4), (4, 5)], [(2, 3), (6, 6)], [(0, 2), (5, 4)], [(1, 0), (4, 2)], [(2, 2), (5, 0)], [(0, 1), (6, 2)], [(1, 3), (4, 1)], [(3, 2), (3, 3)], [(2, 4), (1, 2)], [(4, 3), (3, 1)], [(3, 5), (5, 2)], [(1, 4), (6, 4)], [(-1, -1)]]
+
+
+
+
+[(0, 6), (2, 6)]
+iterative
+in ids, depth and result:  1 (1.0, (2, 6))
+in ids, depth and result:  2 (1.0, (2, 6))
+in ids, depth and result:  3 (3.0, (2, 6))
+in ids, depth and result:  4 (0.0, (2, 6))
+in ids, depth and result:  5 (-1.0, (0, 6))
+in ids, depth and result:  6 (0.0, (0, 6))
+in ids, depth and result:  7 (2.0, (0, 6))
+in ids, depth and result:  8 (2.0, (0, 6))
+in ids, depth and result:  9 (1.0, (0, 6))
+in ids, depth and result:  10 (1.0, (0, 6))
+in ids, depth and result:  11 (0.0, (0, 6))
+in ids, depth and result:  12 (0.0, (0, 6))
+in ids, depth and result:  13 (0.0, (0, 6))
+in ids, depth and result:  14 (0.0, (0, 6))
+in ids, depth and result:  15 (0.0, (0, 6))
+in ids, depth and result:  16 (0.0, (0, 6))
+in ids, depth and result:  17 (-1.0, (0, 6))
+in ids, depth and result:  18 (-inf, (-1, -1))
+in custom get move:  -inf (-1, -1)
+illegal move : (-1, -1)
+legal moves:  [(0, 6), (2, 6)]
+(<sample_players.RandomPlayer object at 0x10136dc18>, [[(-1, -1)]], 'illegal move')
+ |   | - | - |   | - |   |   |
+ | - |   | - | - | 1 |   |   |
+ |   |   | - | - | - |   |   |
+ |   | - | - | - |   | - |   |
+ |   | - | - | - |   | - |   |
+ | - |   | - |   | - |   |   |
+ |   |   | - |   | 2 |   | - |
+
+
+
+
+ |   | - | - |   | - | 1 |   |
+ | - |   | - | - |   |   |   |
+ | 2 |   | - | - | - |   | - |
+ |   |   | - | - |   |   |   |
+ |   | - | - |   |   | - |   |
+ | - |   |   |   | - |   |   |
+ |   |   | - |   |   |   | - |
+
+
+
+
+ /anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/my_test.py
+in game: p1 lose!
+ | 2 |   |   |   |   |
+ |   |   | 1 |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 win!
+ | 1 | 2 |   |   |   |
+ |   |   | - |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 lose!
+ |   |   | 2 |   |   |
+ |   |   | 1 |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 win!
+ |   |   |   |   |   |
+ | 2 |   | - |   |   |
+ | 1 |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 lose!
+ |   |   |   |   |   |
+ |   | 2 | 1 |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 lose!
+ |   |   |   |   |   |
+ |   |   | 1 |   |   |
+ | 2 |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 win!
+ |   |   |   |   | 1 |
+ |   |   | - |   |   |
+ |   | 2 |   |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 lose!
+ |   |   |   |   |   |
+ |   |   | 1 |   |   |
+ |   |   | 2 |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 win!
+ |   |   |   |   |   |
+ |   |   | - |   |   |
+ | 1 |   |   |   |   |
+ | 2 |   |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 lose!
+ |   |   |   |   |   |
+ |   |   | 1 |   |   |
+ |   |   |   |   |   |
+ |   | 2 |   |   |   |
+ |   |   |   |   |   |
+
+in game: p1 win!
+ |   |   |   |   |   |
+ |   |   | - |   |   |
+ | 1 |   |   |   |   |
+ |   |   | 2 |   |   |
+ |   |   |   |   |   |
+
+in game: p1 lose!
+ |   |   |   |   |   |
+ |   |   | 1 |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ | 2 |   |   |   |   |
+
+in game: p1 win!
+ |   |   |   |   | 1 |
+ |   |   | - |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ |   | 2 |   |   |   |
+
+in game: p1 lose!
+ |   |   |   |   |   |
+ |   |   | 1 |   |   |
+ |   |   |   |   |   |
+ |   |   |   |   |   |
+ |   |   | 2 |   |   |
+
+[(1, 2), (1, 2), (1, 2), (1, 2), (1, 2), (1, 2)]
+[(0, 0), (0, 2), (1, 1), (2, 0), (2, 2), (3, 1), (4, 0), (4, 2)]
+
+Process finished with exit code 0
+
+/Users/zouyu/anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/mytest3.py
+95839
+[(((0, 1), (1, 3)), 41866), (((0, 1), (2, 0)), 38468), (((0, 1), (2, 2)), 15505)]
+
+Process finished with exit code 0
+
+
+/Users/zouyu/anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/mytest.py
+[(0, 1), (0, 2), (1, 2)]
+for p1_move, p2 have these moves: (0, 1) [(0, 0), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]
+ | 2 | 1 |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+
+in ids, depth and result, and time left:  1 (3.0, (2, 2)) 3599999.6153810024
+in ids, depth and result, and time left:  2 (-3.0, (2, 2)) 3599998.876458943
+in ids, depth and result, and time left:  3 (-3.0, (1, 3)) 3599996.5844849944
+in ids, depth and result, and time left:  4 (-7.0, (1, 3)) 3599989.200152993
+in ids, depth and result, and time left:  5 (-7.0, (1, 3)) 3599964.0658529997
+in ids, depth and result, and time left:  6 (-7.0, (1, 3)) 3599916.012370944
+in ids, depth and result, and time left:  7 (-5.0, (2, 2)) 3599786.1915379763
+in ids, depth and result, and time left:  8 (-6.0, (2, 0)) 3599460.374375999
+in ids, depth and result, and time left:  9 (-6.0, (1, 3)) 3598597.8374079466
+in ids, depth and result, and time left:  10 (-6.0, (2, 2)) 3596804.1198549867
+in ids, depth and result, and time left:  11 (-6.0, (1, 3)) 3594032.4702569842
+in ids, depth and result, and time left:  12 (-6.0, (1, 3)) 3586678.442083001
+in ids, depth and result, and time left:  13 (-6.0, (1, 3)) 3564024.4495269656
+in ids, depth and result, and time left:  14 (-6.0, (1, 3)) 3520695.3779699802
+in ids, depth and result, and time left:  15 (-5.0, (2, 0)) 3452666.2175040245
+in ids, depth and result, and time left:  16 (-5.0, (1, 3)) 3360635.354840994
+in ids, depth and result, and time left:  17 (-5.0, (1, 3)) 3105783.2876080275
+in ids, depth and result, and time left:  18 (-4.0, (1, 3)) 2677866.9444969893
+in ids, depth and result, and time left:  19 (-5.0, (1, 3)) 1709972.0696719885
+(1, 3)
+ |   | 1 | 2 |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+
+in ids, depth and result, and time left:  1 (-1.0, (2, 2)) 3599999.5357170105
+in ids, depth and result, and time left:  2 (-7.0, (2, 2)) 3599998.244015038
+in ids, depth and result, and time left:  3 (-7.0, (1, 3)) 3599992.489108026
+in ids, depth and result, and time left:  4 (-7.0, (1, 3)) 3599979.3078650236
+in ids, depth and result, and time left:  5 (-7.0, (1, 3)) 3599943.138618052
+in ids, depth and result, and time left:  6 (-6.0, (1, 3)) 3599892.863956034
+in ids, depth and result, and time left:  7 (-6.0, (1, 3)) 3599753.0090230703
+in ids, depth and result, and time left:  8 (-7.0, (2, 2)) 3599235.67642802
+in ids, depth and result, and time left:  9 (-6.0, (1, 3)) 3598177.6545600295
+in ids, depth and result, and time left:  10 (-6.0, (1, 3)) 3594613.205139041
+in ids, depth and result, and time left:  11 (-6.0, (1, 3)) 3589911.9793590307
+in ids, depth and result, and time left:  12 (-6.0, (2, 0)) 3583109.7753530145
+in ids, depth and result, and time left:  13 (-6.0, (1, 3)) 3569223.95638901
+in ids, depth and result, and time left:  14 (-5.0, (1, 3)) 3543518.389116049
+in ids, depth and result, and time left:  15 (-5.0, (1, 3)) 3499718.973807037
+in ids, depth and result, and time left:  16 (-6.0, (1, 3)) 3386801.950094044
+in ids, depth and result, and time left:  17 (-6.0, (1, 3)) 3027017.3366390467
+in ids, depth and result, and time left:  18 (-4.0, (1, 3)) 2637173.0461480618
+in ids, depth and result, and time left:  19 (-4.0, (1, 3)) 2012489.1205510497
+(1, 3)
+ |   | 1 |   | 2 |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+
+in ids, depth and result, and time left:  1 (0.0, (2, 2)) 3599999.6896939874
+in ids, depth and result, and time left:  2 (-8.0, (2, 2)) 3599998.580514014
+in ids, depth and result, and time left:  3 (-6.0, (1, 3)) 3599991.529527962
+in ids, depth and result, and time left:  4 (-7.0, (1, 3)) 3599980.0986139774
+in ids, depth and result, and time left:  5 (-7.0, (1, 3)) 3599954.0905780196
+in ids, depth and result, and time left:  6 (-7.0, (1, 3)) 3599886.9783439636
+in ids, depth and result, and time left:  7 (-7.0, (1, 3)) 3599687.5185329914
+in ids, depth and result, and time left:  8 (-6.0, (1, 3)) 3599184.0105400085
+in ids, depth and result, and time left:  9 (-5.0, (1, 3)) 3598282.5510309935
+in ids, depth and result, and time left:  10 (-6.0, (1, 3)) 3595455.5994440317
+in ids, depth and result, and time left:  11 (-6.0, (1, 3)) 3589619.9509159923
+in ids, depth and result, and time left:  12 (-5.0, (1, 3)) 3581599.3204699755
+in ids, depth and result, and time left:  13 (-4.0, (1, 3)) 3570639.052145958
+in ids, depth and result, and time left:  14 (-5.0, (1, 3)) 3537180.223414004
+in ids, depth and result, and time left:  15 (-4.0, (2, 0)) 3424589.7828199863
+in ids, depth and result, and time left:  16 (-4.0, (1, 3)) 3254239.698870003
+in ids, depth and result, and time left:  17 (-3.0, (1, 3)) 2891460.06419003
+in ids, depth and result, and time left:  18 (-3.0, (1, 3)) 1919550.333261013
+in ids, depth and result, and time left:  19 (-3.0, (1, 3)) 521468.7244770527
+(1, 3)
+ |   | 1 |   |   | 2 |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   |   |   |
+
+in ids, depth and result, and time left:  1 (-1.0, (2, 2)) 3599999.1707150936
+in ids, depth and result, and time left:  2 (-7.0, (2, 2)) 3599997.8375270367
+in ids, depth and result, and time left:  3 (-7.0, (1, 3)) 3599993.980259061
+in ids, depth and result, and time left:  4 (-7.0, (1, 3)) 3599982.9858210683
+in ids, depth and result, and time left:  5 (-7.0, (1, 3)) 3599957.0728480816
+in ids, depth and result, and time left:  6 (-7.0, (1, 3)) 3599898.8204669952
+in ids, depth and result, and time left:  7 (-5.0, (2, 0)) 3599679.544290006
+in ids, depth and result, and time left:  8 (-7.0, (2, 0)) 3599196.7967980504
+in ids, depth and result, and time left:  9 (-6.0, (1, 3)) 3598219.5351190567
+in ids, depth and result, and time left:  10 (-5.0, (2, 2)) 3595525.034884095
+in ids, depth and result, and time left:  11 (-6.0, (1, 3)) 3590637.931560099
+in ids, depth and result, and time left:  12 (-7.0, (1, 3)) 3576840.4475860596
+in ids, depth and result, and time left:  13 (-6.0, (1, 3)) 3554097.0929430723
+in ids, depth and result, and time left:  14 (-5.0, (1, 3)) 3533857.5737980604
+in ids, depth and result, and time left:  15 (-5.0, (1, 3)) 3492809.520238042
+in ids, depth and result, and time left:  16 (-5.0, (2, 2)) 3213655.1278630495
+in ids, depth and result, and time left:  17 (-5.0, (1, 3)) 2892028.597527027
+in ids, depth and result, and time left:  18 (-4.0, (1, 3)) 2498350.668579042
+in ids, depth and result, and time left:  19 (-4.0, (1, 3)) 1496781.4852970243
+Traceback (most recent call last):
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/mytest.py", line 75, in <module>
+    p1_res = p1.get_move(g, p1_l_m, time_left)
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 177, in get_move
+    score, res_move = self.iterative_deepening_search(game)
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 104, in iterative_deepening_search
+    result = self.fixed_depth_search(game, depth)
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 98, in fixed_depth_search
+    return search_fn(game, depth_limit)
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 299, in alphabeta
+    not maximizing_player)
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 299, in alphabeta
+    not maximizing_player)
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 299, in alphabeta
+    not maximizing_player)
+  [Previous line repeated 13 more times]
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/game_agent.py", line 298, in alphabeta
+    score, _ = self.alphabeta(game.forecast_move(move), depth - 1, alpha, beta,
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/isolation/isolation.py", line 128, in forecast_move
+    new_board = self.copy()
+  File "/Users/zouyu/PycharmProjects/Isolation-Project/isolation/isolation.py", line 109, in copy
+    new_board.__board_state__ = deepcopy(self.__board_state__)
+  File "/Users/zouyu/anaconda/envs/aind/lib/python3.6/copy.py", line 150, in deepcopy
+    y = copier(x, memo)
+  File "/Users/zouyu/anaconda/envs/aind/lib/python3.6/copy.py", line 215, in _deepcopy_list
+    append(deepcopy(a, memo))
+  File "/Users/zouyu/anaconda/envs/aind/lib/python3.6/copy.py", line 185, in deepcopy
+    _keep_alive(x, memo) # Make sure x lives at least as long as d
+  File "/Users/zouyu/anaconda/envs/aind/lib/python3.6/copy.py", line 263, in _keep_alive
+    memo[id(memo)].append(x)
+KeyboardInterrupt
+
+Process finished with exit code 1
+
+
+/Users/zouyu/anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py
+
+This script evaluates the performance of the custom heuristic function by
+comparing the strength of an agent using iterative deepening (ID) search with
+alpha-beta pruning against the strength rating of agents using other heuristic
+functions.  The `ID_Improved` agent provides a baseline by measuring the
+performance of a basic agent using Iterative Deepening and the "improved"
+heuristic (from lecture) on your hardware.  The `Student` agent then measures
+the performance of Iterative Deepening and the custom heuristic against the
+same opponents.
+
+
+*************************
+Evaluating: Custom_Score
+*************************
+
+Playing Matches:
+----------
+  Match 1: Custom_Score vs ID_Improved
+winner:  <function custom_score at 0x105dbc510>
+history:  [[(1, 0), (2, 1)], [(2, 2), (1, 3)], [(0, 3), (2, 5)], [(1, 1), (0, 4)], [(2, 3), (1, 2)], [(1, 5), (2, 4)], [(3, 6), (1, 6)], [(4, 4), (3, 5)], [(3, 2), (4, 3)], [(5, 1), (3, 1)], [(3, 0), (5, 2)], [(4, 2), (6, 4)], [(5, 4), (-1, -1)]]
+ |   |   | 1 | 1 | 2 |   |   |
+ | 1 | 1 | 2 | 2 |   | 1 | 2 |
+ |   | 2 | 1 | 1 | 2 | 2 |   |
+ | 1 | 2 | 1 |   |   | 2 | 1 |
+ | 2 |   | 1 | 2 | 1 |   |   |
+ |   | 1 | 2 |   | 1 |   |   |
+ |   |   |   |   | 2 |   |   |
+
+
+winner:  <function custom_score at 0x105dbc510>
+history:  [[(1, 0), (2, 1)], [(2, 2), (1, 3)], [(0, 3), (3, 2)], [(1, 1), (2, 4)], [(2, 3), (3, 6)], [(3, 5), (1, 5)], [(1, 6), (3, 4)], [(0, 4), (2, 6)], [(2, 5), (4, 5)], [(4, 6), (3, 3)], [(5, 4), (1, 2)], [(6, 2), (3, 1)], [(5, 0), (4, 3)], [(-1, -1)]]
+ |   |   | 1 | 1 | 1 |   |   |
+ | 1 | 1 | 2 | 2 |   | 2 | 1 |
+ |   | 2 | 1 | 1 | 2 | 1 | 2 |
+ |   | 2 | 2 | 2 | 2 | 1 | 2 |
+ | 2 |   |   | 2 |   | 2 | 1 |
+ | 1 |   |   |   | 1 |   |   |
+ |   |   | 1 |   |   |   |   |
+
+
+winner:  <function custom_score at 0x105dbc510>
+history:  [[(1, 0), (2, 1)], [(2, 2), (1, 3)], [(0, 3), (3, 2)], [(1, 1), (2, 4)], [(2, 3), (3, 6)], [(3, 5), (1, 5)], [(1, 6), (3, 4)], [(0, 4), (4, 6)], [(1, 2), (2, 5)], [(3, 3), (4, 4)], [(4, 1), (5, 2)], [(6, 2), (3, 1)], [(-1, -1)]]
+ |   |   | 1 | 1 | 1 |   |   |
+ | 1 | 1 | 1 | 2 |   | 2 | 1 |
+ |   | 2 | 1 | 1 | 2 | 2 |   |
+ |   | 2 | 2 | 1 | 2 | 1 | 2 |
+ | 2 | 1 |   |   | 2 |   | 2 |
+ |   |   | 2 |   |   |   |   |
+ |   |   | 1 |   |   |   |   |
+
+
+winner:  <function improved_score at 0x105dbbf28>
+history:  [[(1, 0), (2, 1)], [(2, 2), (1, 3)], [(0, 3), (3, 2)], [(1, 1), (2, 4)], [(2, 3), (3, 6)], [(3, 5), (1, 5)], [(1, 4), (3, 4)], [(0, 6), (4, 2)], [(2, 5), (5, 4)], [(0, 4), (3, 3)], [(1, 2), (5, 2)], [(3, 1), (4, 4)], [(-1, -1)]]
+ |   |   | 1 | 1 | 1 |   | 1 |
+ | 1 | 1 | 1 | 2 | 1 | 2 |   |
+ |   | 2 | 1 | 1 | 2 | 1 |   |
+ |   | 1 | 2 | 2 | 2 | 1 | 2 |
+ | 2 |   | 2 |   | 2 |   |   |
+ |   |   | 2 |   | 2 |   |   |
+ |   |   |   |   |   |   |   |
+
+	Result: 3 to 1
+
+
+Results:
+----------
+Custom_Score        75.00%
+
+Process finished with exit code 0
+
+
+
+<function custom_score at 0x109d2e950> [[(3, 1), (1, 1)], [(1, 0), (2, 3)], [(0, 2), (1, 5)], [(1, 4), (0, 3)], [(2, 2), (2, 4)], [(4, 1), (0, 5)], [(3, 3), (1, 3)], [(5, 4), (3, 4)], [(4, 2), (5, 5)], [(6, 3), (-1, -1)]]
+ |   |   | 1 | 2 |   | 2 |   |
+ | 1 | 2 |   | 2 | 1 | 2 |   |
+ |   |   | 1 | 2 | 2 |   |   |
+ |   | 1 | 2 | 1 | 2 |   |   |
+ |   | 1 | 1 |   |   |   |   |
+ |   |   | 1 |   | 1 | 2 |   |
+ |   |   |   | 1 |   |   |   |
+ <function custom_score at 0x107216950> [[(3, 1), (1, 1)], [(1, 0), (0, 3)], [(0, 2), (1, 5)], [(2, 1), (2, 3)], [(0, 0), (3, 5)], [(1, 2), (1, 4)], [(3, 3), (2, 2)], [(4, 1), (3, 4)], [(5, 3), (2, 6)], [(4, 5), (0, 5)], [(2, 4), (-1, -1)]]
+ | 1 |   | 1 | 2 |   | 2 |   |
+ | 1 | 2 | 1 |   | 2 | 2 |   |
+ |   | 1 | 2 | 2 | 1 |   | 2 |
+ |   | 1 | 2 | 1 | 2 | 2 |   |
+ |   | 1 |   |   |   | 1 |   |
+ |   |   | 1 | 1 |   |   |   |
+ |   |   |   |   |   |   |   |
+<function custom_score at 0x10e1e2950> [[(3, 1), (1, 1)], [(1, 0), (2, 3)], [(0, 2), (1, 5)], [(1, 4), (0, 3)], [(2, 2), (2, 4)], [(3, 4), (1, 2)], [(1, 3), (3, 3)], [(2, 1), (2, 5)], [(4, 2), (4, 4)], [(5, 0), (5, 6)], [(6, 2), (6, 4)], [(5, 4), (-1, -1)]]
+ |   |   | 1 | 2 |   |   |   |
+ | 1 | 2 | 2 | 1 | 1 | 2 |   |
+ |   | 1 | 1 | 2 | 2 | 2 |   |
+ |   | 1 | 2 | 2 | 1 |   |   |
+ |   |   | 1 |   | 2 |   |   |
+ | 1 |   | 1 |   | 1 |   | 2 |
+ |   |   | 1 |   | 2 |   |   |
+
+
+Playing Matches:
+----------
+  Match 1: Custom_Score vs ID_Improved
+winner:  <function custom_score at 0x10758f488>
+history:  [[(2, 2), (4, 4)], [(1, 4), (2, 3)]]
+ |   |   |   |   |   |   |   |
+ |   |   |   |   | 1 |   |   |
+ |   |   | 1 |   |   |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   | 1 | 2 |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   | 2 |   |
+
+
+winner:  <function custom_score at 0x10758f488>
+history:  [[(1, 2), (3, 4)], [(2, 0), (1, 5)]]
+ |   |   |   |   |   |   |   |
+ |   |   | 1 |   |   |   |   |
+ | 1 |   |   |   |   |   |   |
+ |   | 1 |   |   | 2 |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   | 2 |   |
+ |   |   |   |   |   |   |   |
+
+
+winner:  <function custom_score at 0x10758f488>
+history:  [[(2, 2), (4, 4)], [(1, 4), (2, 3)], [(2, 6), (0, 2)], [(0, 5), (2, 1)], [(1, 3)]]
+ |   |   | 2 |   |   | 1 |   |
+ |   |   |   |   | 1 |   |   |
+ |   | 2 | 1 | 2 |   |   | 1 |
+ |   |   |   |   |   |   |   |
+ |   |   |   | 1 | 2 |   |   |
+ |   |   |   |   |   |   |   |
+ |   |   |   |   |   | 2 |   |
+
+
+

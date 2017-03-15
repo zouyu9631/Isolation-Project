@@ -52,6 +52,13 @@ class Board(object):
         self.__board_state__ = [[Board.BLANK for i in range(width)] for j in range(height)]
         self.__last_player_move__ = {player_1: Board.NOT_MOVED, player_2: Board.NOT_MOVED}
         self.__player_symbols__ = {Board.BLANK: Board.BLANK, player_1: 1, player_2: 2}
+        self.moves = []
+
+    def __eq__(self, other):
+        return (
+        self.width == other.width and self.height == other.height and self.move_count == other.move_count and
+        self.__active_player__ == other.__active_player__ and self.inactive_player == other.inactive_player and
+        self.__board_state__ == other.__board_state__ and self.__last_player_move__ == other.__last_player_move__)
 
     @property
     def active_player(self):
@@ -204,6 +211,7 @@ class Board(object):
         self.__board_state__[row][col] = self.__player_symbols__[self.active_player]
         self.__active_player__, self.__inactive_player__ = self.__inactive_player__, self.__active_player__
         self.move_count += 1
+        self.moves.append(move)
 
     def is_winner(self, player):
         """ Test whether the specified player has won the game. """
@@ -292,7 +300,7 @@ class Board(object):
                 elif p2_loc and i == p2_loc[0] and j == p2_loc[1]:
                     out += '2'
                 else:
-                    out += '-'
+                    out += str(self.__board_state__[i][j])
 
                 out += ' | '
             out += '\n\r'
@@ -335,6 +343,7 @@ class Board(object):
             # print move_end
 
             if curr_move is None:
+                print('in board play, currmove is None')
                 curr_move = Board.NOT_MOVED
 
             if self.active_player == self.__player_1__:
@@ -346,6 +355,9 @@ class Board(object):
                 return self.__inactive_player__, move_history, "timeout"
 
             if curr_move not in legal_player_moves:
+                # print('illegal move :', curr_move)
+                # print('legal moves: ', legal_player_moves)
                 return self.__inactive_player__, move_history, "illegal move"
 
             self.apply_move(curr_move)
+            #print(self.to_string())

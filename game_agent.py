@@ -10,11 +10,73 @@ import random
 import sys
 
 INF = float("inf")
+DIR = [(1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1)]
 
 
 class Timeout(Exception):
     """Subclass base exception for code clarity."""
     pass
+
+
+def improved_score(game, player):
+    own_moves = len(game.get_legal_moves(player))
+    opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
+    return float(own_moves - 2 * opp_moves)
+
+
+def second_reached(g, player):
+    player_loc = g.get_player_location(player)
+    w = g.width
+    blanks = g.get_blank_spaces()
+    second_reached_boxes = set([(loc[0] + i, loc[1] + j) for loc in g.get_legal_moves(player) for (i, j) in DIR if
+                                0 <= loc[0] + i < w and 0 <= loc[1] + j < w and (loc[0] + i, loc[1] + j) in blanks])
+    return len(second_reached_boxes)
+
+def second_reached_score(g, player):
+    return second_reached(g, player) - second_reached(g, g.get_opponent(player))
+
+
+def weighted_reached(g, player, level_limit=4):
+    w = g.width
+    blanks = g.get_blank_spaces()
+
+    level = min(w - len(blanks) // w, level_limit)
+    last_paths = [[g.get_player_location(player)]]
+    for l in range(level):
+        next_paths = []
+        for path in last_paths:
+            loc = path[-1]
+            next_steps = set([(loc[0] + i, loc[1] + j) for (i, j) in DIR if
+                              0 <= loc[0] + i < w and 0 <= loc[1] + j < w and (loc[0] + i, loc[1] + j) in blanks
+                              and (loc[0] + i, loc[1] + j) not in path])
+            for next_step in next_steps:
+                next_paths.append(path + [next_step])
+        last_paths = next_paths
+    return len(last_paths)
+
+
+def weighted_reached_score(g, player):
+    return weighted_reached(g, player) - weighted_reached(g, g.get_opponent(player))
+
+
+def reached_boxes(g, player):
+    player_loc = g.get_player_location(player)
+    w = g.width
+
+    blanks = g.get_blank_spaces()
+    last_steps = set([player_loc])
+    all_reached = set()
+    while last_steps:
+        player_next_step = set([(loc[0] + i, loc[1] + j) for loc in last_steps for (i, j) in DIR if
+                                0 <= loc[0] + i < w and 0 <= loc[1] + j < w and
+                                (loc[0] + i, loc[1] + j) not in all_reached and (loc[0] + i, loc[1] + j) in blanks])
+        all_reached |= player_next_step
+        last_steps = player_next_step
+    return len(all_reached)
+
+
+def reached_boxes_score(g, player):
+    return reached_boxes(g, player) - reached_boxes(g, g.get_opponent(player))
 
 
 def custom_score(game, player):
@@ -39,15 +101,15 @@ def custom_score(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
-
     if game.is_loser(player):
         return -INF
     if game.is_winner(player):
         return INF
 
-    own_moves = len(game.get_legal_moves(player))
-    opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    return float(own_moves - 2 * opp_moves)
+    # return improved_score(game, player)
+    # return reached_boxes_score(game, player) - reached_boxes_score(game, game.get_opponent(player))
+    return second_reached_score(game, player) - second_reached_score(game, game.get_opponent(player))
+    # return weighted_reached_score(game, player) - weighted_reached_score(game, game.get_opponent(player))
 
 
 class CustomPlayer:
@@ -93,24 +155,32 @@ class CustomPlayer:
         if depth_limit is None or not isinstance(depth_limit, int):
             depth_limit = self.search_depth
 
-        if self.method == 'minimax':
-            search_fn = self.minimax
-        elif self.method == 'alphabeta':
-            search_fn = self.alphabeta
-        else:
-            raise ValueError("search method unknown: " + self.method)
+        search_fn = self.minimax if self.method == 'minimax' else self.alphabeta
 
         return search_fn(game, depth_limit)
 
     def iterative_deepening_search(self, game):
         result = -INF, (-1, -1)
+        d = 0
+        debug = False
+        # if game.get_player_location(game.active_player) == (2, 2): debug = True
         try:
             for depth in range(1, sys.maxsize):
+                d = depth
                 result = self.fixed_depth_search(game, depth)
+                if debug: print('in ids, depth and result, and time left: ', depth, result, self.time_left())
+                # if result[0] == -INF: # going to lose, try a random move
+                #     return -INF, random.choice(game.get_legal_moves())
+                # if there's only result leads to win or lose, no need to search more
+                if result[0] == INF or result[0] == -INF:
+                    # print('NOTTIMEOUT: in ids, depth, result, and time left: ', d, result, self.time_left())
+                    return result
         except Timeout:
             pass
-        finally:
-            return result
+        # if result[0] == -INF: # going to lose, try a random move
+        #     return -INF, random.choice(game.get_legal_moves())
+        # print('!TIMEOUT! in ids, depth, result, and time left: ', d, result, self.time_left())
+        return result
 
     def get_move(self, game, legal_moves, time_left):
         """Search for the best move from the available legal moves and return a
@@ -153,15 +223,14 @@ class CustomPlayer:
         # Perform any required initializations, including selecting an initial
         # move from the game board (i.e., an opening book), or returning
         # immediately if there are no legal moves
-        # TODO: very first step, but this strategy need to be reconsidered
         if not legal_moves:
             return (-1, -1)
         if len(legal_moves) > 8:
             middle_point = (game.height // 2, game.width // 2)
             if (middle_point in legal_moves):
                 return middle_point
-            elif (middle_point[0] - 1, middle_point[1] - 1) in legal_moves:
-                return (middle_point[0] - 1, middle_point[1] - 1)
+            elif (middle_point[0] - 1, middle_point[1]) in legal_moves:
+                return (middle_point[0] - 1, middle_point[1])
             else:
                 print(game.to_string())
                 print(legal_moves)
@@ -182,10 +251,10 @@ class CustomPlayer:
             # Handle any actions required at timeout, if necessary
             if res_move is None:
                 res_move = random.choice(legal_moves)
-                print('in getmove, timeout and no move,return a random move: ', res_move)
-            return res_move
+                # print('in getmove, timeout and no move,return a random move: ', res_move, self.score)
 
         # Return the best move from the last completed search iteration
+        # print('get a move: ', res_move)
         return res_move
 
     def minimax(self, game, depth, maximizing_player=True):
@@ -222,28 +291,17 @@ class CustomPlayer:
         if self.time_left() < self.TIMER_THRESHOLD:
             raise Timeout()
 
-        # terminal states check
-        if depth == 0:
-            return self.score(game, self), (-1, -1)
-        u = game.utility(self)
-        if u != 0.0:
-            return u, (-1, -1)
-
         legal_moves = game.get_legal_moves()
 
-        # initialize function depends on maximizing_player
-        if maximizing_player:
-            min_or_max = max
-            res = -INF, (-1, -1)
-        else:
-            min_or_max = min
-            res = INF, (-1, -1)
+        # terminal states check
+        if depth == 0 or len(legal_moves) == 0:
+            return self.score(game, self), (-1, -1)
 
-        # minimax body
-        for move in legal_moves:
-            res = min_or_max(res,
-                             (self.minimax(game.forecast_move(move), depth - 1, not maximizing_player)[0], move))
-        return res
+        # initialize function depends on maximizing_player
+        opti_func = max if maximizing_player else min
+
+        return opti_func(
+            (self.minimax(game.forecast_move(move), depth - 1, not maximizing_player)[0], move) for move in legal_moves)
 
     def alphabeta(self, game, depth, alpha=-INF, beta=INF, maximizing_player=True):
         """Implement minimax search with alpha-beta pruning as described in the
@@ -286,33 +344,34 @@ class CustomPlayer:
         if self.time_left() < self.TIMER_THRESHOLD:
             raise Timeout()
 
-        # terminal states check
-        if depth == 0:
-            return self.score(game, self), (-1, -1)
-        u = game.utility(self)
-        if u != 0.0:
-            return u, (-1, -1)
-
         legal_moves = game.get_legal_moves()
+
+        # terminal states check
+        if depth == 0 or len(legal_moves) == 0:
+            return self.score(game, self), (-1, -1)
 
         # initialize functions depends on maximizing_player
         if maximizing_player:
-            min_or_max = max
-            res = -INF, (-1, -1)
+            opti_func = max
+            res = alpha, (-1, -1)
             can_prunning = lambda v, alpha, beta: v >= beta
             update_alphabeta = lambda v, alpha, beta: (max(alpha, v), beta)
         else:
-            min_or_max = min
-            res = INF, (-1, -1)
+            opti_func = min
+            res = beta, (-1, -1)
             can_prunning = lambda v, alpha, beta: v <= alpha
             update_alphabeta = lambda v, alpha, beta: (alpha, min(beta, v))
 
         # alphabeta body
         for move in legal_moves:
-            t_res = self.alphabeta(game.forecast_move(move), depth - 1, alpha, beta,
-                                   not maximizing_player)
-            res = min_or_max(res,((t_res)[0], move))
-            if can_prunning(t_res[0], alpha, beta):
-                return t_res
-            alpha, beta = update_alphabeta(res[0], alpha, beta)
+            score, _ = self.alphabeta(game.forecast_move(move), depth - 1, alpha, beta,
+                                      not maximizing_player)
+            if can_prunning(score, alpha, beta):
+                return score, move
+            alpha, beta = update_alphabeta(score, alpha, beta)
+            # res = opti_func(res, (score, move))
+            if maximizing_player:  # use >=, <= instead of >, <  will get a different result~~ WHY????
+                if score > res[0]: res = score, move
+            else:
+                if score < res[0]: res = score, move
         return res

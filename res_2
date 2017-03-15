@@ -1,0 +1,109 @@
+/Users/zouyu/anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py
+
+This script evaluates the performance of the custom heuristic function by
+comparing the strength of an agent using iterative deepening (ID) search with
+alpha-beta pruning against the strength rating of agents using other heuristic
+functions.  The `ID_Improved` agent provides a baseline by measuring the
+performance of a basic agent using Iterative Deepening and the "improved"
+heuristic (from lecture) on your hardware.  The `Student` agent then measures
+the performance of Iterative Deepening and the custom heuristic against the
+same opponents.
+
+
+*************************
+ Evaluating: ID_Improved
+*************************
+
+Playing Matches:
+----------
+  Match 1: ID_Improved vs   Random    /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py:121: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 81 to 19
+  Match 2: ID_Improved vs   MM_Null   	Result: 74 to 26
+  Match 3: ID_Improved vs   MM_Open   	Result: 63 to 37
+  Match 4: ID_Improved vs MM_Improved 	Result: 68 to 32
+  Match 5: ID_Improved vs   AB_Null     Result: 64 to 36
+  Match 6: ID_Improved vs   AB_Open   	Result: 60 to 40
+  Match 7: ID_Improved vs AB_Improved 	Result: 67 to 33
+  Match 8: ID_Improved vs Student_Reached_Box 	Result: 52 to 48
+  Match 9: ID_Improved vs Student_Second_Reached 	Result: 50 to 50
+  Match 10: ID_Improved vs Student_Weighted_Reached Result: 57 to 43
+
+
+Results:
+----------
+ID_Improved         63.60%
+
+*************************
+Evaluating: Student_Reached_Box
+*************************
+
+Playing Matches:
+----------
+  Match 1: Student_Reached_Box vs   Random    /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py:121: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 96 to 4
+  Match 2: Student_Reached_Box vs   MM_Null   	Result: 88 to 12
+  Match 3: Student_Reached_Box vs   MM_Open   	Result: 82 to 18
+  Match 4: Student_Reached_Box vs MM_Improved 	Result: 67 to 33
+  Match 5: Student_Reached_Box vs   AB_Null   	Result: 76 to 24
+  Match 6: Student_Reached_Box vs   AB_Open   	Result: 71 to 29
+  Match 7: Student_Reached_Box vs AB_Improved 	Result: 62 to 38
+  Match 8: Student_Reached_Box vs ID_Improved 	Result: 48 to 52
+  Match 9: Student_Reached_Box vs Student_Second_Reached 	Result: 58 to 42
+  Match 10: Student_Reached_Box vs Student_Weighted_Reached 	Result: 72 to 28
+
+
+Results:
+----------
+Student_Reached_Box     72.00%
+
+*************************
+Evaluating: Student_Second_Reached
+*************************
+
+Playing Matches:
+----------
+  Match 1: Student_Second_Reached vs   Random    	Result: 95 to 5
+  Match 2: Student_Second_Reached vs   MM_Null   	Result: 89 to 11
+  Match 3: Student_Second_Reached vs   MM_Open      Result: 72 to 28
+  Match 4: Student_Second_Reached vs MM_Improved 	Result: 68 to 32
+  Match 5: Student_Second_Reached vs   AB_Null   	Result: 77 to 23
+  Match 6: Student_Second_Reached vs   AB_Open   	Result: 64 to 36
+  Match 7: Student_Second_Reached vs AB_Improved 	Result: 51 to 49
+  Match 8: Student_Second_Reached vs ID_Improved 	Result: 44 to 56
+  Match 9: Student_Second_Reached vs Student_Reached_Box    Result: 45 to 55
+  Match 10: Student_Second_Reached vs Student_Weighted_Reached 	Result: 68 to 32
+
+
+Results:
+----------
+Student_Second_Reached     67.30%
+
+*************************
+Evaluating: Student_Weighted_Reached
+*************************
+
+Playing Matches:
+----------
+  Match 1: Student_Weighted_Reached vs   Random    	Result: 91 to 9
+  Match 2: Student_Weighted_Reached vs   MM_Null   /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py:121: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+  warnings.warn(TIMEOUT_WARNING)
+	Result: 76 to 24
+  Match 3: Student_Weighted_Reached vs   MM_Open   	Result: 48 to 52
+  Match 4: Student_Weighted_Reached vs MM_Improved 	Result: 48 to 52
+  Match 5: Student_Weighted_Reached vs   AB_Null   	Result: 64 to 36
+  Match 6: Student_Weighted_Reached vs   AB_Open   	Result: 45 to 55
+  Match 7: Student_Weighted_Reached vs AB_Improved 	Result: 36 to 64
+  Match 8: Student_Weighted_Reached vs ID_Improved 	Result: 45 to 55
+  Match 9: Student_Weighted_Reached vs Student_Reached_Box 	Result: 29 to 71
+  Match 10: Student_Weighted_Reached vs Student_Second_Reached /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py:121: UserWarning: One or more agents lost a match this round due to timeout. The get_move() function must return before time_left() reaches 0 ms. You will need to leave some time for the function to return, and may need to increase this margin to avoid timeouts during  tournament play.
+	Result: 33 to 67
+  warnings.warn(TIMEOUT_WARNING)
+
+
+Results:
+----------
+Student_Weighted_Reached     51.50%
+
+Process finished with exit code 0

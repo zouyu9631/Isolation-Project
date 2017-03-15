@@ -24,6 +24,7 @@ import random
 import warnings
 
 from collections import namedtuple
+from multiprocessing import Pool
 
 from isolation import Board
 from sample_players import RandomPlayer
@@ -32,9 +33,10 @@ from sample_players import open_move_score
 from sample_players import improved_score
 from game_agent import CustomPlayer
 from game_agent import custom_score
+from game_agent import reached_boxes_score, second_reached_score, weighted_reached_score
 
-NUM_MATCHES = 5  # number of matches against each opponent
-TIME_LIMIT = 150  # number of milliseconds before timeout
+NUM_MATCHES = 25  # number of matches against each opponent
+TIME_LIMIT = 200  # number of milliseconds before timeout
 
 TIMEOUT_WARNING = "One or more agents lost a match this round due to " + \
                   "timeout. The get_move() function must return before " + \
@@ -67,38 +69,55 @@ def play_match(player1, player2):
     num_wins = {player1: 0, player2: 0}
     num_timeouts = {player1: 0, player2: 0}
     num_invalid_moves = {player1: 0, player2: 0}
-    games = [Board(player1, player2), Board(player2, player1)]
+    games = [Board(player1, player2, 7, 7), Board(player2, player1)]
 
     # initialize both games with a random move and response
     for _ in range(2):
         move = random.choice(games[0].get_legal_moves())
         games[0].apply_move(move)
         games[1].apply_move(move)
-
+    # games[0].apply_move((0, 2))
+    # games[0].apply_move((4, 0))
+    # games[1].apply_move((0, 2))
+    # games[1].apply_move((4, 0))
     # play both games and tally the results
     for game in games:
-        winner, _, termination = game.play(time_limit=TIME_LIMIT)
+        winner, history, termination = game.play(time_limit=TIME_LIMIT)
+        # print()
+        # print('winner: ', winner.score)
+        # print('termination: ', termination)
+        # print('history: ', history)
+        # print(game.to_string())
 
+
+        # if termination != 'timeout':
+        #     print(reached_boxes_score(game, winner), reached_boxes_score(game, game.get_opponent(winner)))
+
+
+        # if not isinstance(winner, CustomPlayer):
+        #     print(termination)
+        #     print(game.to_string())
+        #     print(first_turn + history)
         if player1 == winner:
             num_wins[player1] += 1
 
             if termination == "timeout":
-                print('timeout: ', player2)
                 num_timeouts[player2] += 1
             else:
                 num_invalid_moves[player2] += 1
 
         elif player2 == winner:
-
             num_wins[player2] += 1
 
             if termination == "timeout":
-                print('timeout: ', player1)
                 num_timeouts[player1] += 1
             else:
                 num_invalid_moves[player1] += 1
 
     if sum(num_timeouts.values()) != 0:
+        # for player in num_timeouts.keys():
+        #     if num_timeouts[player] != 0:
+        #         print(player.score)
         warnings.warn(TIMEOUT_WARNING)
 
     return num_wins[player1], num_wins[player2]
@@ -121,10 +140,23 @@ def play_round(agents, num_matches):
         names = [agent_1.name, agent_2.name]
         print("  Match {}: {!s:^11} vs {!s:^11}".format(idx + 1, *names), end=' ')
 
+        pool = Pool()
+
         # Each player takes a turn going first
         for p1, p2 in itertools.permutations((agent_1.player, agent_2.player)):
+            # for _ in range(num_matches):
+            #     score_1, score_2 = play_match(p1, p2)
+            #     counts[p1] += score_1
+            #     counts[p2] += score_2
+            #     total += score_1 + score_2
+
+            match_results = []
             for _ in range(num_matches):
-                score_1, score_2 = play_match(p1, p2)
+                match_result = pool.apply_async(play_match, [p1, p2])
+                match_results.append(match_result)
+
+            for match_result in match_results:
+                score_1, score_2 = match_result.get()
                 counts[p1] += score_1
                 counts[p2] += score_2
                 total += score_1 + score_2
@@ -163,7 +195,9 @@ def main():
     # relative to the performance of the ID_Improved agent to account for
     # faster or slower computers.
     test_agents = [Agent(CustomPlayer(score_fn=improved_score, **CUSTOM_ARGS), "ID_Improved"),
-                   Agent(CustomPlayer(score_fn=custom_score, **CUSTOM_ARGS), "Student")]
+                   Agent(CustomPlayer(score_fn=reached_boxes_score, **CUSTOM_ARGS), "Student_Reached_Box"),
+                   Agent(CustomPlayer(score_fn=second_reached_score, **CUSTOM_ARGS), "Student_Second_Reached"),
+                   Agent(CustomPlayer(score_fn=weighted_reached_score, **CUSTOM_ARGS), "Student_Weighted_Reached")]
 
     print(DESCRIPTION)
     for agentUT in test_agents:
@@ -172,12 +206,17 @@ def main():
         print("{:^25}".format("Evaluating: " + agentUT.name))
         print("*************************")
 
-        agents = random_agents + mm_agents + ab_agents + [agentUT]
+        agents = random_agents + mm_agents + ab_agents + test_agents
+        agents.remove(agentUT)
+        agents += [agentUT]
+        # agents = ab_agents + [agentUT]
+        # agents = be_test_agents + [agentUT]
         win_ratio = play_round(agents, NUM_MATCHES)
 
         print("\n\nResults:")
         print("----------")
         print("{!s:<15}{:>10.2f}%".format(agentUT.name, win_ratio))
+
 
 
 if __name__ == "__main__":

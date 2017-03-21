@@ -6,7 +6,7 @@ from sample_players import open_move_score
 from sample_players import improved_score
 from game_agent import CustomPlayer
 from game_agent import custom_score
-from game_agent import reached_boxes_score, weighted_reached_score
+from game_agent import all_boxes_can_move_score
 import timeit
 
 TIME_LIMIT = 150  # number of milliseconds before timeout
@@ -66,7 +66,6 @@ res = g.play(TIME_LIMIT)
 print(res[0].score, res[1])
 print(g.to_string())
 
-print(weighted_reached_score(g, g.active_player), weighted_reached_score(g, g.inactive_player))
 
 def try_moves(moves):
     g = Board(p1, p2, w, w)

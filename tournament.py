@@ -32,11 +32,11 @@ from sample_players import null_score
 from sample_players import open_move_score
 from sample_players import improved_score
 from game_agent import CustomPlayer
-from game_agent import custom_score
-from game_agent import reached_boxes_score, second_reached_score, weighted_reached_score
+from game_agent import custom_score, second_moves_in_middle_game_score
+from game_agent import all_boxes_can_move_score, second_moves_score, linear_ratio_improved_score, more_improved_score, nonlinear_ratio_improved_score
 
 NUM_MATCHES = 25  # number of matches against each opponent
-TIME_LIMIT = 200  # number of milliseconds before timeout
+TIME_LIMIT = 150  # number of milliseconds before timeout
 
 TIMEOUT_WARNING = "One or more agents lost a match this round due to " + \
                   "timeout. The get_move() function must return before " + \
@@ -91,7 +91,7 @@ def play_match(player1, player2):
 
 
         # if termination != 'timeout':
-        #     print(reached_boxes_score(game, winner), reached_boxes_score(game, game.get_opponent(winner)))
+        #     print(all_boxes_can_move_score(game, winner), all_boxes_can_move_score(game, game.get_opponent(winner)))
 
 
         # if not isinstance(winner, CustomPlayer):
@@ -133,38 +133,47 @@ def play_round(agents, num_matches):
 
     print("\nPlaying Matches:")
     print("----------")
+    print("|{:>10} vs:|win/total  |win rate\t|".format(agent_1.name))
+    print("|---------------|-----------|-----------|")
+    # print("|Random      	|20/20	|100.00%|")
 
     for idx, agent_2 in enumerate(agents[:-1]):
 
         counts = {agent_1.player: 0., agent_2.player: 0.}
         names = [agent_1.name, agent_2.name]
-        print("  Match {}: {!s:^11} vs {!s:^11}".format(idx + 1, *names), end=' ')
+        # print("  Match {}: {!s:^11} vs {!s:^11}".format(idx + 1, *names), end=' ')
+        print("|{:<12}".format(agent_2.name), end='\t')
 
         pool = Pool()
 
         # Each player takes a turn going first
         for p1, p2 in itertools.permutations((agent_1.player, agent_2.player)):
-            # for _ in range(num_matches):
-            #     score_1, score_2 = play_match(p1, p2)
-            #     counts[p1] += score_1
-            #     counts[p2] += score_2
-            #     total += score_1 + score_2
-
-            match_results = []
             for _ in range(num_matches):
-                match_result = pool.apply_async(play_match, [p1, p2])
-                match_results.append(match_result)
-
-            for match_result in match_results:
-                score_1, score_2 = match_result.get()
+                score_1, score_2 = play_match(p1, p2)
                 counts[p1] += score_1
                 counts[p2] += score_2
                 total += score_1 + score_2
 
+            # match_results = []
+            # for _ in range(num_matches):
+            #     match_result = pool.apply_async(play_match, [p1, p2])
+            #     match_results.append(match_result)
+            #
+            # for match_result in match_results:
+            #     score_1, score_2 = match_result.get()
+            #     counts[p1] += score_1
+            #     counts[p2] += score_2
+            #     total += score_1 + score_2
+
         wins += counts[agent_1.player]
 
-        print("\tResult: {} to {}".format(int(counts[agent_1.player]),
-                                          int(counts[agent_2.player])))
+        # print("\tResult: {} to {}\t {:>10.2f}%".format(int(counts[agent_1.player]),
+        #                                   int(counts[agent_2.player]),
+        #                                        (100.0*counts[agent_1.player])/(counts[agent_1.player]+counts[agent_2.player])))
+        print("|{}/{}\t\t|{:.2f}%\t\t|".format(int(counts[agent_1.player]),
+                                                       int(counts[agent_1.player]+counts[agent_2.player]),
+                                                       (100.0 * counts[agent_1.player]) / (
+                                                       counts[agent_1.player] + counts[agent_2.player])))
 
     return 100. * wins / total
 
@@ -194,10 +203,14 @@ def main():
     # systems; i.e., the performance of the student agent is considered
     # relative to the performance of the ID_Improved agent to account for
     # faster or slower computers.
-    test_agents = [Agent(CustomPlayer(score_fn=improved_score, **CUSTOM_ARGS), "ID_Improved"),
-                   Agent(CustomPlayer(score_fn=reached_boxes_score, **CUSTOM_ARGS), "Student_Reached_Box"),
-                   Agent(CustomPlayer(score_fn=second_reached_score, **CUSTOM_ARGS), "Student_Second_Reached"),
-                   Agent(CustomPlayer(score_fn=weighted_reached_score, **CUSTOM_ARGS), "Student_Weighted_Reached")]
+    test_agents = [
+        Agent(CustomPlayer(score_fn=improved_score, **CUSTOM_ARGS), "ID_Improved"),
+        # Agent(CustomPlayer(score_fn=more_improved_score, **CUSTOM_ARGS), "More_Improved"),
+        Agent(CustomPlayer(score_fn=linear_ratio_improved_score, **CUSTOM_ARGS), "Linear_Improved"),
+        Agent(CustomPlayer(score_fn=nonlinear_ratio_improved_score, **CUSTOM_ARGS), "Non_Linear_Improved"),
+        Agent(CustomPlayer(score_fn=second_moves_score, **CUSTOM_ARGS), "Second_Moves"),
+        Agent(CustomPlayer(score_fn=second_moves_in_middle_game_score, **CUSTOM_ARGS), "Second_Moves_In_Middle_Game"),
+        Agent(CustomPlayer(score_fn=all_boxes_can_move_score, **CUSTOM_ARGS), "All_Boxes_Can_Move"), ]
 
     print(DESCRIPTION)
     for agentUT in test_agents:
@@ -206,11 +219,9 @@ def main():
         print("{:^25}".format("Evaluating: " + agentUT.name))
         print("*************************")
 
-        agents = random_agents + mm_agents + ab_agents + test_agents
+        # agents = random_agents + mm_agents + ab_agents + [agentUT]
+        agents = test_agents + [agentUT]
         agents.remove(agentUT)
-        agents += [agentUT]
-        # agents = ab_agents + [agentUT]
-        # agents = be_test_agents + [agentUT]
         win_ratio = play_round(agents, NUM_MATCHES)
 
         print("\n\nResults:")

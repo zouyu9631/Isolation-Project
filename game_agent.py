@@ -18,65 +18,106 @@ class Timeout(Exception):
     pass
 
 
-def improved_score(game, player):
+def more_improved_score(game, player):
+    if game.is_loser(player):
+        return -INF
+    if game.is_winner(player):
+        return INF
+
     own_moves = len(game.get_legal_moves(player))
     opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    return float(own_moves - 2 * opp_moves)
+    return float(own_moves - 3 * opp_moves)
 
 
-def second_reached(g, player):
-    player_loc = g.get_player_location(player)
+def linear_ratio_improved_score(g, player):
+    if g.is_loser(player):
+        return -INF
+    if g.is_winner(player):
+        return INF
+
+    blank_ratio = len(g.get_blank_spaces()) / (g.width * g.height)
+    # print(len(g.get_blank_spaces()), g.width*g.height, blank_ratio)
+
+    own_moves = len(g.get_legal_moves(player))
+    opp_moves = len(g.get_legal_moves(g.get_opponent(player)))
+
+    return float(blank_ratio * own_moves - 7.50 * (1 - blank_ratio) * opp_moves)
+
+
+def nonlinear_ratio_improved_score(g, player):
+    if g.is_loser(player):
+        return -INF
+    if g.is_winner(player):
+        return INF
+    blank_ratio = 3.0 / (g.width * g.height + 1 - len(g.get_blank_spaces()))
+    # print(blank_ratio)
+    # print(len(g.get_blank_spaces()), g.width*g.height, blank_ratio)
+
+    own_moves = len(g.get_legal_moves(player))
+    opp_moves = len(g.get_legal_moves(g.get_opponent(player)))
+
+    return float(blank_ratio * own_moves - (1 - blank_ratio) * opp_moves)
+
+
+def second_moves(g, player):
     w = g.width
     blanks = g.get_blank_spaces()
-    second_reached_boxes = set([(loc[0] + i, loc[1] + j) for loc in g.get_legal_moves(player) for (i, j) in DIR if
-                                0 <= loc[0] + i < w and 0 <= loc[1] + j < w and (loc[0] + i, loc[1] + j) in blanks])
-    return len(second_reached_boxes)
-
-def second_reached_score(g, player):
-    return second_reached(g, player) - second_reached(g, g.get_opponent(player))
+    second_moves_boxes = [(loc[0] + i, loc[1] + j) for loc in g.get_legal_moves(player) for (i, j) in DIR if
+                          0 <= loc[0] + i < w and 0 <= loc[1] + j < w and (loc[0] + i, loc[1] + j) in blanks]
+    return len(second_moves_boxes)
 
 
-def weighted_reached(g, player, level_limit=4):
+def second_moves_score(g, player):
+    if g.is_loser(player):
+        return -INF
+    if g.is_winner(player):
+        return INF
+    return second_moves(g, player) - second_moves(g, g.get_opponent(player))
+
+
+def second_moves_in_middle_game(g, player, l=2):
     w = g.width
     blanks = g.get_blank_spaces()
+    legal_moves = g.get_legal_moves(player)
 
-    level = min(w - len(blanks) // w, level_limit)
-    last_paths = [[g.get_player_location(player)]]
-    for l in range(level):
-        next_paths = []
-        for path in last_paths:
-            loc = path[-1]
-            next_steps = set([(loc[0] + i, loc[1] + j) for (i, j) in DIR if
-                              0 <= loc[0] + i < w and 0 <= loc[1] + j < w and (loc[0] + i, loc[1] + j) in blanks
-                              and (loc[0] + i, loc[1] + j) not in path])
-            for next_step in next_steps:
-                next_paths.append(path + [next_step])
-        last_paths = next_paths
-    return len(last_paths)
+    if len(blanks) > w * (w - l):
+        return len(legal_moves)
+    else:
+        second_moves = [(loc[0] + i, loc[1] + j) for loc in legal_moves for (i, j) in DIR if
+                        0 <= loc[0] + i < w and 0 <= loc[1] + j < w and (loc[0] + i, loc[1] + j) in blanks]
+        return len(second_moves)
 
 
-def weighted_reached_score(g, player):
-    return weighted_reached(g, player) - weighted_reached(g, g.get_opponent(player))
+def second_moves_in_middle_game_score(g, player):
+    if g.is_loser(player):
+        return -INF
+    if g.is_winner(player):
+        return INF
+    return second_moves_in_middle_game(g, player) - second_moves_in_middle_game(g, g.get_opponent(player))
 
 
-def reached_boxes(g, player):
+def all_boxes_can_move(g, player):
     player_loc = g.get_player_location(player)
     w = g.width
 
     blanks = g.get_blank_spaces()
     last_steps = set([player_loc])
-    all_reached = set()
+    all_boxes = set()
     while last_steps:
         player_next_step = set([(loc[0] + i, loc[1] + j) for loc in last_steps for (i, j) in DIR if
                                 0 <= loc[0] + i < w and 0 <= loc[1] + j < w and
-                                (loc[0] + i, loc[1] + j) not in all_reached and (loc[0] + i, loc[1] + j) in blanks])
-        all_reached |= player_next_step
+                                (loc[0] + i, loc[1] + j) not in all_boxes and (loc[0] + i, loc[1] + j) in blanks])
+        all_boxes |= player_next_step
         last_steps = player_next_step
-    return len(all_reached)
+    return len(all_boxes)
 
 
-def reached_boxes_score(g, player):
-    return reached_boxes(g, player) - reached_boxes(g, g.get_opponent(player))
+def all_boxes_can_move_score(g, player):
+    if g.is_loser(player):
+        return -INF
+    if g.is_winner(player):
+        return INF
+    return all_boxes_can_move(g, player) - all_boxes_can_move(g, g.get_opponent(player))
 
 
 def custom_score(game, player):
@@ -106,10 +147,9 @@ def custom_score(game, player):
     if game.is_winner(player):
         return INF
 
-    # return improved_score(game, player)
-    # return reached_boxes_score(game, player) - reached_boxes_score(game, game.get_opponent(player))
-    return second_reached_score(game, player) - second_reached_score(game, game.get_opponent(player))
-    # return weighted_reached_score(game, player) - weighted_reached_score(game, game.get_opponent(player))
+    own_moves = len(game.get_legal_moves(player))
+    opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
+    return float(own_moves - 2 * opp_moves)
 
 
 class CustomPlayer:

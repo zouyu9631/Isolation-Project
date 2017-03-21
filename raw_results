@@ -1,0 +1,278 @@
+/Users/zouyu/anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py
+
+This script evaluates the performance of the custom heuristic function by
+comparing the strength of an agent using iterative deepening (ID) search with
+alpha-beta pruning against the strength rating of agents using other heuristic
+functions.  The `ID_Improved` agent provides a baseline by measuring the
+performance of a basic agent using Iterative Deepening and the "improved"
+heuristic (from lecture) on your hardware.  The `Student` agent then measures
+the performance of Iterative Deepening and the custom heuristic against the
+same opponents.
+
+
+*************************
+ Evaluating: ID_Improved
+*************************
+
+Playing Matches:
+----------
+|ID_Improved vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Random      	|86/100		|86.00%		|
+|MM_Null     	|71/100		|71.00%		|
+|MM_Open     	|61/100		|61.00%		|
+|MM_Improved 	|55/100		|55.00%		|
+|AB_Null     	|70/100		|70.00%		|
+|AB_Open     	|64/100		|64.00%		|
+|AB_Improved 	|62/100		|62.00%		|
+
+
+Results:
+----------
+ID_Improved         67.00%
+
+*************************
+Evaluating: Linear_Improved
+*************************
+
+Playing Matches:
+----------
+|Linear_Improved vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Random      	|86/100		|86.00%		|
+|MM_Null     	|72/100		|72.00%		|
+|MM_Open     	|74/100		|74.00%		|
+|MM_Improved 	|68/100		|68.00%		|
+|AB_Null     	|70/100		|70.00%		|
+|AB_Open     	|61/100		|61.00%		|
+|AB_Improved 	|67/100		|67.00%		|
+
+
+Results:
+----------
+Linear_Improved     71.14%
+
+*************************
+Evaluating: Non_Linear_Improved
+*************************
+
+Playing Matches:
+----------
+|Non_Linear_Improved vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Random      	|86/100		|86.00%		|
+|MM_Null     	|80/100		|80.00%		|
+|MM_Open     	|67/100		|67.00%		|
+|MM_Improved 	|69/100		|69.00%		|
+|AB_Null     	|74/100		|74.00%		|
+|AB_Open     	|60/100		|60.00%		|
+|AB_Improved 	|55/100		|55.00%		|
+
+
+Results:
+----------
+Non_Linear_Improved     70.14%
+
+*************************
+Evaluating: Second_Moves
+*************************
+
+Playing Matches:
+----------
+|Second_Moves vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Random      	|87/100		|87.00%		|
+|MM_Null     	|81/100		|81.00%		|
+|MM_Open     	|76/100		|76.00%		|
+|MM_Improved 	|73/100		|73.00%		|
+|AB_Null     	|84/100		|84.00%		|
+|AB_Open     	|71/100		|71.00%		|
+|AB_Improved 	|72/100		|72.00%		|
+
+
+Results:
+----------
+Second_Moves        77.71%
+
+*************************
+Evaluating: Second_Moves_In_Middle_Game
+*************************
+
+Playing Matches:
+----------
+|Second_Moves_In_Middle_Game vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Random      	|92/100		|92.00%		|
+|MM_Null     	|84/100		|84.00%		|
+|MM_Open     	|72/100		|72.00%		|
+|MM_Improved 	|65/100		|65.00%		|
+|AB_Null     	|85/100		|85.00%		|
+|AB_Open     	|69/100		|69.00%		|
+|AB_Improved 	|59/100		|59.00%		|
+
+
+Results:
+----------
+Second_Moves_In_Middle_Game     75.14%
+
+*************************
+Evaluating: All_Boxes_Can_Move
+*************************
+
+Playing Matches:
+----------
+|All_Boxes_Can_Move vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Random      	|82/100		|82.00%		|
+|MM_Null     	|79/100		|79.00%		|
+|MM_Open     	|63/100		|63.00%		|
+|MM_Improved 	|62/100		|62.00%		|
+|AB_Null     	|78/100		|78.00%		|
+|AB_Open     	|69/100		|69.00%		|
+|AB_Improved 	|57/100		|57.00%		|
+
+
+Results:
+----------
+All_Boxes_Can_Move     70.00%
+
+Process finished with exit code 0
+
+
+
+
+
+
+
+
+
+
+
+
+/Users/zouyu/anaconda/envs/aind/bin/python3.6 /Users/zouyu/PycharmProjects/Isolation-Project/tournament.py
+
+This script evaluates the performance of the custom heuristic function by
+comparing the strength of an agent using iterative deepening (ID) search with
+alpha-beta pruning against the strength rating of agents using other heuristic
+functions.  The `ID_Improved` agent provides a baseline by measuring the
+performance of a basic agent using Iterative Deepening and the "improved"
+heuristic (from lecture) on your hardware.  The `Student` agent then measures
+the performance of Iterative Deepening and the custom heuristic against the
+same opponents.
+
+
+*************************
+ Evaluating: ID_Improved
+*************************
+
+Playing Matches:
+----------
+|ID_Improved vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|Linear_Improved	|52/100		|52.00%		|
+|Non_Linear_Improved	|52/100		|52.00%		|
+|Second_Moves	|41/100		|41.00%		|
+|Second_Moves_In_Middle_Game	|48/100		|48.00%		|
+|All_Boxes_Can_Move	|47/100		|47.00%		|
+
+
+Results:
+----------
+ID_Improved         48.00%
+
+*************************
+Evaluating: Linear_Improved
+*************************
+
+Playing Matches:
+----------
+|Linear_Improved vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|ID_Improved 	|48/100		|48.00%		|
+|Non_Linear_Improved	|51/100		|51.00%		|
+|Second_Moves	|41/100		|41.00%		|
+|Second_Moves_In_Middle_Game	|40/100		|40.00%		|
+|All_Boxes_Can_Move	|48/100		|48.00%		|
+
+
+Results:
+----------
+Linear_Improved     45.60%
+
+*************************
+Evaluating: Non_Linear_Improved
+*************************
+
+Playing Matches:
+----------
+|Non_Linear_Improved vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|ID_Improved 	|53/100		|53.00%		|
+|Linear_Improved	|50/100		|50.00%		|
+|Second_Moves	|43/100		|43.00%		|
+|Second_Moves_In_Middle_Game	|48/100		|48.00%		|
+|All_Boxes_Can_Move	|51/100		|51.00%		|
+
+
+Results:
+----------
+Non_Linear_Improved     49.00%
+
+*************************
+Evaluating: Second_Moves
+*************************
+
+Playing Matches:
+----------
+|Second_Moves vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|ID_Improved 	|55/100		|55.00%		|
+|Linear_Improved	|59/100		|59.00%		|
+|Non_Linear_Improved	|62/100		|62.00%		|
+|Second_Moves_In_Middle_Game	|48/100		|48.00%		|
+|All_Boxes_Can_Move	|61/100		|61.00%		|
+
+
+Results:
+----------
+Second_Moves        57.00%
+
+*************************
+Evaluating: Second_Moves_In_Middle_Game
+*************************
+
+Playing Matches:
+----------
+|Second_Moves_In_Middle_Game vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|ID_Improved 	|58/100		|58.00%		|
+|Linear_Improved	|50/100		|50.00%		|
+|Non_Linear_Improved	|57/100		|57.00%		|
+|Second_Moves	|48/100		|48.00%		|
+|All_Boxes_Can_Move	|61/100		|61.00%		|
+
+
+Results:
+----------
+Second_Moves_In_Middle_Game     54.80%
+
+*************************
+Evaluating: All_Boxes_Can_Move
+*************************
+
+Playing Matches:
+----------
+|All_Boxes_Can_Move vs:|win/total  |win rate	|
+|---------------|-----------|-----------|
+|ID_Improved 	|53/100		|53.00%		|
+|Linear_Improved	|53/100		|53.00%		|
+|Non_Linear_Improved	|39/100		|39.00%		|
+|Second_Moves	|38/100		|38.00%		|
+|Second_Moves_In_Middle_Game	|45/100		|45.00%		|
+
+
+Results:
+----------
+All_Boxes_Can_Move     45.60%
+
+Process finished with exit code 0
